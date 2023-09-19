@@ -11,3 +11,21 @@
     You can learn with GPT in Socratic style.
   </p>
 </div>
+
+<div align="left">
+   <p>
+   OpenAI Playground Demo List:
+   </p>
+  
+  <p>
+   <a href="https://platform.openai.com/playground/p/PCd4XsNlN0kSTb08GCFxcYG2?model=gpt-4">
+     CN, Physchology, Intimate relationships
+   </a>
+  </p>
+  
+  <p>
+   <a href="https://platform.openai.com/playground/p/GxvQ1WjTSmdOg8vYJUxYafgT?model=gpt-4">
+     CN, History, Politics
+   </a>
+  </p>
+ </div>

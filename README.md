@@ -5,7 +5,7 @@
     <img src="https://github.com/Agent-Kindergarten/EduSocratic/assets/39160269/4effec99-d9ee-44f7-bf11-48daa9b5c97b" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">EduSocratic</h3>
+  <h3 align="center">EduSocrates</h3>
 
   <p align="center">
     Talk to Socrates what you've just learned, and it will help you understand that better!

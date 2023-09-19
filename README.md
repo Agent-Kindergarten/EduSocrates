@@ -8,7 +8,7 @@
   <h3 align="center">EduSocratic</h3>
 
   <p align="center">
-    You can learn with GPT in Socratic style.
+    Talk to Socrates what you've just learned, and it will help you understand that better!
   </p>
 </div>
 

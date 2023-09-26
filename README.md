@@ -8,7 +8,7 @@
   <h3 align="center">EduSocrates</h3>
 
   <p align="center">
-    Talk to Socrates what you've just learned, and it will help you understand that better!
+    Talk to Socrates what you've just learned, and he will help you understand that better!
   </p>
 </div>
 

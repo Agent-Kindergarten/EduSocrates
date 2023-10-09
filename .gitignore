@@ -175,3 +175,7 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 set 限制解除 
+
+
+# 自己的配置
+Local_tests/

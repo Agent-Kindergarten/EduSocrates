@@ -1,5 +1,6 @@
 from typing import List
 from dotenv import load_dotenv
+from deprecated import deprecated
 import os
 import tempfile
 import streamlit as st
@@ -65,7 +66,7 @@ def get_chain_by_pdfs() -> Chain | None:
     if os.getenv("OPENAI_API_KEY") is None or os.getenv("OPENAI_API_KEY") == "":
         st.error("❌ Please set your OpenAI API key in the sidebar.")
         return
-    
+
     # get documents
     documents = get_docs_from_pdfs()
     # split documents into chunks
@@ -74,7 +75,7 @@ def get_chain_by_pdfs() -> Chain | None:
     retriever = get_retriever(vectorstore)
     llm = get_llm()
     # Setup memory for contextual conversation
-    msgs = StreamlitChatMessageHistory(key="langchain_messages")
+    msgs = st.session_state["langchain_messages"]
     memory = ConversationBufferMemory(
         memory_key="chat_history", chat_memory=msgs, return_messages=True
     )
@@ -90,6 +91,7 @@ def set_main_page():
     # st.write(css, unsafe_allow_html=True)
 
 
+@deprecated(reason="use st.chat_input() instead")
 def set_input_area():
     st.header(":books: Talk to Socrates what you've just learned.")
     if len(st.session_state["pdf_docs"]) == 0:
@@ -98,7 +100,7 @@ def set_input_area():
     if st.session_state["pdfs_processed"] == False:
         st.info("Click on 'Process' first.")
         return
-    
+
     user_question = st.text_input("Start your talk here:")
     if user_question == "":
         return
@@ -170,7 +172,7 @@ def get_chain_when_pressing_process_button():
         if len(st.session_state["pdf_docs"]) == 0:
             st.button(label="Process", disabled=True)
         else:
-            if st.button(label="Process", disabled=False):
+            if st.button(label="Process", disabled=False, key="process_button"):
                 with st.spinner("Processing"):
                     st.session_state["chain"] = get_chain_by_pdfs()
                 if st.session_state["chain"] is None:
@@ -181,20 +183,26 @@ def get_chain_when_pressing_process_button():
 
 
 def set_chat_display_module():
+    st.header(":books: Talk to Socrates what you've just learned.")
+    chain = st.session_state["chain"]
+    if chain is None:
+        st.info("Upload your PDFs first.")
+        return
+
     msgs = st.session_state["langchain_messages"]
-    print("1. ",st.session_state["langchain_messages"])
-    print("2. ",msgs)
-    print("3. ",type(msgs))
-    print("4. ",msgs.messages)
     if len(msgs.messages) == 0:
         msgs.add_ai_message("Hello, I'm Socrates, and how can I help you?")
 
-    avatars = {"human": "user", "ai": "assistant"}
+    avatars = {"human": "user", "ai": "🧙‍♂️"}
     for msg in msgs.messages:
         st.chat_message(avatars[msg.type]).write(msg.content)
 
-    if user_query := st.chat_input(placeholder="Ask me anything!"):
-        st.chat_message("user").write(user_query)
+    user_query = st.chat_input(placeholder="Ask me anything!")
+    if user_query is not None:
+        st.chat_message(avatar="user").write(user_query)
+        if chain is not None:
+            response = chain(user_query)
+            st.chat_message(avatar="🧙‍♂️").write(response["answer"])
 
         # with st.chat_message("assistant"):
         #     retrieval_handler = PrintRetrievalHandler(st.container())
@@ -214,7 +222,7 @@ def main():
     if "pdfs_processed" not in st.session_state:
         st.session_state["pdfs_processed"] = False
     if "langchain_messages" not in st.session_state:
-        st.session_state["langchain_messages"] = []
+        st.session_state["langchain_messages"] = StreamlitChatMessageHistory()
 
     # set main page fundamentals
     set_main_page()

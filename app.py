@@ -186,7 +186,7 @@ def set_sidebar_about_project_module():
             "This is a project of [Agent Kindergarten](https://github.com/Agent-Kindergarten)."
         )
         st.write(
-            "You can find the source code [here](https://github.com/Agent-Kindergarten/EduSocrates)"
+            "You can find the source code [here](https://github.com/Agent-Kindergarten/EduSocrates)."
         )
 
 

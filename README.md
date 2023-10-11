@@ -12,10 +12,25 @@
   </p>
 </div>
 
+<h1>Screenshots</h1>
+
+This is just a placeholder for real screenshots. The author is trying his best to work out this app.😊
+
+![Alt text](img/image.png)
+
+<h1>Quick setup</h1>
+
+```bash
+pip install -r requirements.txt
+```
+
+<h1>OpenAI playground prototypes</h1>
 <div align="left">
-   <p>
+   <!-- <p>
    OpenAI Playground Demo List:
-   </p>
+   </p> -->
+
+   <p>Here are some early prototypes of EduSocrates.</p>
   
   <p>
    <a href="https://platform.openai.com/playground/p/PCd4XsNlN0kSTb08GCFxcYG2?model=gpt-4">

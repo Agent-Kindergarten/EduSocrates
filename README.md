@@ -16,7 +16,7 @@
 
 This is just a placeholder for real screenshots. The author is trying his best to work out this app.😊
 
-![Alt text](img/image.png)
+![Alt text](imgs/image.png)
 
 <h1>Quick setup</h1>
 
